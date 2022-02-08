@@ -14,7 +14,7 @@ public class Connection {
 	private DataOutputStream outStream; // for writing bytes to the TCP connection
 	private DataInputStream inStream; // for reading bytes from the TCP connection
 	private Socket socket; // socket for the underlying TCP connection
-	
+
 	public Connection(Socket socket) {
 
 		try {
@@ -35,14 +35,14 @@ public class Connection {
 	public void send(Message message) {
 
 		byte[] data;
-		
-		// TODO - START
-		// encapsulate the data contained in the message and write to the output stream
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-			
-		// TODO - END
+
+		data = MessageUtils.encapsulate(message);
+
+		try {
+			outStream.write(data);
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 
@@ -50,29 +50,28 @@ public class Connection {
 
 		Message message = null;
 		byte[] data;
-		
-		// TODO - START
-		// read a segment from the input stream and decapsulate into message
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - END
-		
+
+		try {
+			data = inStream.readNBytes(MessageUtils.SEGMENTSIZE);
+			message = MessageUtils.decapsulate(data);
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+
 		return message;
-		
+
 	}
 
-	// close the connection by closing streams and the underlying socket	
+	// close the connection by closing streams and the underlying socket
 	public void close() {
 
 		try {
-			
+
 			outStream.close();
 			inStream.close();
 
 			socket.close();
-			
+
 		} catch (IOException ex) {
 
 			System.out.println("Connection: " + ex.getMessage());
