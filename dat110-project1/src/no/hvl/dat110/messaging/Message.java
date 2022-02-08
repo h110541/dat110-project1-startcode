@@ -4,20 +4,23 @@ import no.hvl.dat110.TODO;
 
 public class Message {
 
+	public static final int MAX_MESSAGE_SIZE = 127;
+
 	private byte[] data;
 
 	public Message(byte[] data) {
-		
-		// TODO - START
-		
-		if (true)
-			throw new UnsupportedOperationException(TODO.constructor("Message"));
-			
-		// TODO - END
+
+		if (data == null) {
+			throw new RuntimeException("no data (data is null)");
+		} else if (data.length > MAX_MESSAGE_SIZE) {
+			throw new RuntimeException("data is too large");
+		}
+
+		this.data = data;
 	}
 
 	public byte[] getData() {
-		return this.data; 
+		return this.data;
 	}
 
 }
