@@ -50,12 +50,7 @@ public class RPCUtils {
 
 		byte[] encoded = null;
 
-		// TODO - START
-
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - END
+		encoded = new byte[0];
 
 		return encoded;
 
@@ -63,11 +58,7 @@ public class RPCUtils {
 
 	public static void unmarshallVoid(byte[] data) {
 
-		// TODO
-
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-
+		return;
 	}
 
 	public static byte[] marshallBoolean(boolean b) {
@@ -94,12 +85,9 @@ public class RPCUtils {
 
 		byte[] encoded = null;
 
-		// TODO - START
-
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - END
+		ByteBuffer bb = ByteBuffer.allocate(4);
+		bb.putInt(x);
+		encoded = bb.array();
 
 		return encoded;
 	}
@@ -109,14 +97,8 @@ public class RPCUtils {
 
 		int decoded = 0;
 
-		// TODO - START
-
-		if (true)
-			throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - END
+		decoded = ByteBuffer.wrap(data).getInt();
 
 		return decoded;
-
 	}
 }
